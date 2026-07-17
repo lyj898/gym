@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Calc">
+<meta name="application-name" content="Calc">
+<meta name="theme-color" content="#F2F1EA">
+<link rel="icon" type="image/png" sizes="512x512" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" sizes="512x512" href="data:image/png;base64,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">
+<title>Calc — Workout Calculators</title>
+<style>
+  :root{
+    --bg:#F2F1EA;
+    --card:#FFFFFF;
+    --elevated:#FBFAF4;
+    --ink:#141414;
+    --ink-dim:#8A8A85;
+    --lime:#D7F239;
+    --lime-dim:#BFDD2E;
+    --accent-dark:#6B7A17;
+    --line:#141414;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Consolas", monospace;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    overscroll-behavior-y:none;
+    padding-bottom:calc(78px + env(safe-area-inset-bottom));
+  }
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background:var(--bg);
+    padding:calc(12px + env(safe-area-inset-top)) 20px 12px;
+    border-bottom:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  header.top h1{
+    margin:0; font-size:19px; font-weight:800; letter-spacing:-0.5px;
+    text-transform:uppercase; display:flex; align-items:center; gap:8px;
+  }
+  header.top .all-apps{
+    font-size:11px; color:var(--ink-dim); text-decoration:none; border:1.5px solid var(--line);
+    border-radius:8px; padding:6px 10px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700;
+  }
+  header.top h1 .bar{
+    display:inline-block; width:18px; height:18px; border-radius:5px;
+    background:var(--lime); border:1.5px solid var(--ink);
+  }
+
+  main{padding:16px; max-width:560px; margin:0 auto;}
+  .hidden{display:none !important;}
+
+  .card{
+    background:var(--card); border:1.5px solid var(--line); border-radius:14px;
+    padding:16px; margin-bottom:14px;
+  }
+  .card h2{
+    margin:0 0 4px; font-size:16px; font-weight:800; letter-spacing:-0.2px;
+  }
+  .card .sub{
+    margin:0 0 14px; font-size:12px; color:var(--ink-dim); line-height:1.4;
+  }
+
+  label{display:block; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.6px; margin-bottom:6px;}
+  input, select{
+    width:100%; background:var(--elevated); border:1.5px solid var(--line); color:var(--ink);
+    border-radius:10px; padding:11px 12px; font-size:16px; font-family:inherit;
+  }
+  input:focus, select:focus{outline:none; border-color:var(--ink); box-shadow:0 0 0 2px var(--lime);}
+  .row{display:flex; gap:10px; margin-bottom:12px;}
+  .row > div{flex:1;}
+
+  .btn-primary{
+    width:100%; background:var(--lime); color:var(--ink); border:1.5px solid var(--ink); border-radius:10px;
+    padding:14px; font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px;
+    cursor:pointer; margin-top:4px;
+  }
+  .btn-primary:active{background:var(--lime-dim);}
+  .btn-ghost{
+    background:none; border:1.5px solid var(--line); color:var(--ink); border-radius:10px;
+    padding:10px 14px; font-size:12px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px;
+  }
+
+  .type-toggle{display:flex; gap:8px; margin-bottom:14px; background:var(--elevated); border-radius:10px; padding:3px; border:1.5px solid var(--line);}
+  .type-btn{
+    flex:1; background:transparent; border:none; color:var(--ink-dim);
+    border-radius:8px; padding:9px; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;
+    font-weight:700; cursor:pointer; transition:background 0.15s ease, color 0.15s ease;
+  }
+  .type-btn.active{color:var(--ink); background:var(--lime);}
+
+  .result-box{
+    background:var(--elevated); border:1.5px solid var(--ink); border-radius:12px;
+    padding:16px; text-align:center; margin-top:6px;
+  }
+  .result-box .big{font-family:var(--mono); font-size:32px; font-weight:800; line-height:1.1;}
+  .result-box .lbl{font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.6px; margin-top:4px;}
+
+  table{width:100%; border-collapse:collapse; margin-top:6px;}
+  table th, table td{
+    text-align:left; padding:9px 6px; font-size:13px; border-bottom:1px solid #E3E1D8;
+    font-family:var(--mono);
+  }
+  table th{color:var(--ink-dim); text-transform:uppercase; font-size:10px; letter-spacing:0.5px; font-family:-apple-system,system-ui,sans-serif; font-weight:700;}
+  table tr.highlight td{background:rgba(215,242,57,0.35); font-weight:700;}
+  table td.pct{color:var(--ink-dim);}
+
+  .zone-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; margin-bottom:8px;
+    background:var(--elevated);
+  }
+  .zone-row .zname{font-size:13px; font-weight:700;}
+  .zone-row .zdesc{font-size:11px; color:var(--ink-dim);}
+  .zone-row .zbpm{font-family:var(--mono); font-size:14px; font-weight:800;}
+
+  .plate-result-row{
+    display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:14px;
+    padding:6px 0;
+  }
+  .plate-chip{
+    background:var(--ink); color:var(--lime); border-radius:6px; padding:4px 8px; font-size:12px; font-weight:700;
+  }
+
+  .empty-note{color:var(--ink-dim); font-size:12px; text-align:center; padding:10px 0;}
+
+  /* ---- bottom nav ---- */
+  nav.bottom{
+    position:fixed; bottom:0; left:0; right:0; z-index:30;
+    background:var(--card); border-top:1.5px solid var(--line);
+    display:flex; padding-bottom:env(safe-area-inset-bottom);
+    overflow-x:auto;
+  }
+  nav.bottom button{
+    flex:1; background:none; border:none; color:var(--ink-dim); padding:11px 2px 9px;
+    font-size:10px; text-transform:uppercase; letter-spacing:0.3px; font-weight:700;
+    display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer;
+    white-space:nowrap;
+  }
+  nav.bottom button .dot{width:6px; height:6px; border-radius:50%; background:transparent;}
+  nav.bottom button.active{color:var(--ink);}
+  nav.bottom button.active .dot{background:var(--lime); border:1px solid var(--ink);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1><span class="bar"></span>Calc</h1>
+  <a class="all-apps" href="index.html">All Apps</a>
+</header>
+
+<main>
+
+  <!-- 1RM -->
+  <section id="tab-1rm">
+    <div class="card">
+      <h2>1RM &amp; Training Loads</h2>
+      <p class="sub">For Chest Press, Arm Curl, Seated Row, Leg Press, Leg Curl, Free Weights — estimate your one-rep max and see what to load for a target effort.</p>
+      <div class="row">
+        <div>
+          <label>Weight Used (kg)</label>
+          <input id="rmWeight" type="number" inputmode="decimal" placeholder="60">
+        </div>
+        <div>
+          <label>Reps Performed</label>
+          <input id="rmReps" type="number" inputmode="numeric" placeholder="8">
+        </div>
+      </div>
+      <button class="btn-primary" id="rmCalcBtn">Calculate</button>
+      <div id="rmResult" class="hidden">
+        <div class="result-box">
+          <div class="big" id="rmBig">—</div>
+          <div class="lbl">Estimated 1-Rep Max</div>
+        </div>
+        <table id="rmTable"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALORIES -->
+  <section id="tab-cal" class="hidden">
+    <div class="card">
+      <h2>Calorie Burn</h2>
+      <p class="sub">Same rough MET-based estimate used in LogIt — a ballpark for comparing effort, not a lab measurement.</p>
+      <label>Body Weight (kg)</label>
+      <input id="calWeight" type="number" inputmode="decimal" placeholder="70" style="margin-bottom:14px;">
+
+      <div class="type-toggle" id="calTypeToggle">
+        <button type="button" class="type-btn active" data-type="strength">Strength</button>
+        <button type="button" class="type-btn" data-type="cardio">Cardio</button>
+      </div>
+
+      <div id="calStrengthFields">
+        <label>Number of Sets</label>
+        <input id="calSets" type="number" inputmode="numeric" placeholder="9" style="margin-bottom:14px;">
+      </div>
+
+      <div id="calCardioFields" class="hidden">
+        <label>Activity</label>
+        <select id="calActivity" style="margin-bottom:14px;">
+          <option value="run">Run / Treadmill Run</option>
+          <option value="row">Row</option>
+          <option value="step">Stepper</option>
+          <option value="other">Other Cardio Machine</option>
+        </select>
+        <div class="row">
+          <div><label>Duration (min)</label><input id="calDuration" type="number" inputmode="decimal" placeholder="30"></div>
+          <div><label>Distance (km, optional)</label><input id="calDistance" type="number" inputmode="decimal" placeholder="5.0"></div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="calCalcBtn">Calculate</button>
+      <div id="calResult" class="hidden">
+        <div class="result-box">
+          <div class="big" id="calBig">—</div>
+          <div class="lbl">Estimated Calories Burned</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACE -->
+  <section id="tab-pace" class="hidden">
+    <div class="card">
+      <h2>Running Pace</h2>
+      <p class="sub">For Treadmill Run and outdoor Run. Fill in any two fields and calculate the third.</p>
+      <label>Distance (km)</label>
+      <input id="paceDistance" type="number" inputmode="decimal" placeholder="5.0" style="margin-bottom:12px;">
+      <label>Time (minutes, decimal — e.g. 32:30 = 32.5)</label>
+      <input id="paceTime" type="number" inputmode="decimal" placeholder="30" style="margin-bottom:12px;">
+      <label>Pace (min/km)</label>
+      <input id="pacePace" type="number" inputmode="decimal" placeholder="6.0" style="margin-bottom:14px;">
+      <button class="btn-primary" id="paceCalcBtn">Calculate Missing Value</button>
+      <div id="paceResult" class="hidden">
+        <div class="result-box">
+          <div class="big" id="paceBig">—</div>
+          <div class="lbl" id="paceLbl">Result</div>
+        </div>
+        <div class="empty-note" id="paceSpeedNote"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEART RATE ZONES -->
+  <section id="tab-hr" class="hidden">
+    <div class="card">
+      <h2>Heart Rate Zones</h2>
+      <p class="sub">For Run, Row, and Stepper sessions. Uses the Karvonen method if you enter a resting heart rate, otherwise a simple percent-of-max.</p>
+      <div class="row">
+        <div><label>Age</label><input id="hrAge" type="number" inputmode="numeric" placeholder="30"></div>
+        <div><label>Resting HR (optional)</label><input id="hrResting" type="number" inputmode="numeric" placeholder="65"></div>
+      </div>
+      <button class="btn-primary" id="hrCalcBtn">Calculate Zones</button>
+      <div id="hrResult" class="hidden">
+        <div class="result-box" style="margin-bottom:14px;">
+          <div class="big" id="hrMaxBig">—</div>
+          <div class="lbl">Estimated Max Heart Rate</div>
+        </div>
+        <div id="hrZones"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATE LOADER -->
+  <section id="tab-plates" class="hidden">
+    <div class="card">
+      <h2>Plate Loader</h2>
+      <p class="sub">For Free Weights, Leg Press, and any plate-loaded machine — how much to load per side.</p>
+      <div class="row">
+        <div><label>Target Total Weight (kg)</label><input id="plateTarget" type="number" inputmode="decimal" placeholder="80"></div>
+        <div><label>Bar / Sled Weight (kg)</label><input id="plateBar" type="number" inputmode="decimal" placeholder="20"></div>
+      </div>
+      <button class="btn-primary" id="plateCalcBtn">Calculate Load</button>
+      <div id="plateResult" class="hidden">
+        <div class="result-box" style="margin-bottom:14px;">
+          <div class="big" id="plateBig">—</div>
+          <div class="lbl">Per Side</div>
+        </div>
+        <div id="plateBreakdown"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom">
+  <button data-tab="1rm" class="active"><span class="dot"></span>1RM</button>
+  <button data-tab="cal"><span class="dot"></span>Calories</button>
+  <button data-tab="pace"><span class="dot"></span>Pace</button>
+  <button data-tab="hr"><span class="dot"></span>HR Zones</button>
+  <button data-tab="plates"><span class="dot"></span>Plates</button>
+</nav>
+
+<script>
+(function(){
+  // ---------- TABS ----------
+  const tabs = {
+    '1rm': document.getElementById('tab-1rm'),
+    'cal': document.getElementById('tab-cal'),
+    'pace': document.getElementById('tab-pace'),
+    'hr': document.getElementById('tab-hr'),
+    'plates': document.getElementById('tab-plates')
+  };
+  document.querySelectorAll('nav.bottom button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      Object.values(tabs).forEach(t=>t.classList.add('hidden'));
+      tabs[btn.dataset.tab].classList.remove('hidden');
+    });
+  });
+
+  // Persisted body weight (shared convenience with Lockit's key, if opened on same device/browser)
+  const WEIGHT_KEY = 'plates_bodyweight_kg';
+  const calWeightInput = document.getElementById('calWeight');
+  calWeightInput.value = localStorage.getItem(WEIGHT_KEY) || '70';
+  calWeightInput.addEventListener('change', ()=>{
+    localStorage.setItem(WEIGHT_KEY, parseFloat(calWeightInput.value) || 70);
+  });
+
+  // ---------- 1RM & TRAINING LOADS ----------
+  function epley(weight, reps){ return weight * (1 + reps/30); }
+  function roundToStep(val, step){ return Math.round(val/step) * step; }
+
+  document.getElementById('rmCalcBtn').addEventListener('click', ()=>{
+    const weight = parseFloat(document.getElementById('rmWeight').value);
+    const reps = parseInt(document.getElementById('rmReps').value);
+    if(!weight || !reps || weight<=0 || reps<=0){
+      alert('Enter a valid weight and reps.');
+      return;
+    }
+    const oneRM = epley(weight, reps);
+    document.getElementById('rmBig').textContent = Math.round(oneRM) + ' kg';
+    document.getElementById('rmResult').classList.remove('hidden');
+
+    const percents = [50,60,65,70,75,80,85,90,95,100];
+    const rows = percents.map(p=>{
+      const load = roundToStep(oneRM * p/100, 2.5);
+      const highlight = (p===100) ? ' class="highlight"' : '';
+      return `<tr${highlight}><td class="pct">${p}%</td><td>${load} kg</td></tr>`;
+    }).join('');
+    document.getElementById('rmTable').innerHTML = `
+      <tr><th>% of 1RM</th><th>Load</th></tr>
+      ${rows}
+    `;
+  });
+
+  // ---------- CALORIES (mirrors Lockit's estimateCalories logic) ----------
+  let calType = 'strength';
+  document.querySelectorAll('#calTypeToggle .type-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      calType = btn.dataset.type;
+      document.querySelectorAll('#calTypeToggle .type-btn').forEach(b=>b.classList.toggle('active', b===btn));
+      document.getElementById('calStrengthFields').classList.toggle('hidden', calType!=='strength');
+      document.getElementById('calCardioFields').classList.toggle('hidden', calType!=='cardio');
+    });
+  });
+
+  document.getElementById('calCalcBtn').addEventListener('click', ()=>{
+    const weight = parseFloat(calWeightInput.value) || 70;
+    let calories = 0;
+
+    if(calType === 'strength'){
+      const sets = parseInt(document.getElementById('calSets').value) || 0;
+      if(sets <= 0){ alert('Enter a number of sets.'); return; }
+      const durationHr = (sets * 1.5) / 60;
+      calories = Math.round(5 * weight * durationHr);
+    } else {
+      const activity = document.getElementById('calActivity').value;
+      const duration = parseFloat(document.getElementById('calDuration').value) || 0;
+      const distance = parseFloat(document.getElementById('calDistance').value) || 0;
+      if(duration <= 0){ alert('Enter a duration.'); return; }
+      const durationHr = duration / 60;
+      let met = 7;
+      if(activity === 'run'){
+        met = 9;
+        if(distance > 0){
+          const speedKmh = distance / (duration/60);
+          met = Math.max(6, Math.min(16, speedKmh * 1.05));
+        }
+      } else if(activity === 'row'){
+        met = 7;
+      } else if(activity === 'step'){
+        met = 7;
+      } else {
+        met = 6;
+      }
+      calories = Math.round(met * weight * durationHr);
+    }
+
+    document.getElementById('calBig').textContent = '~' + calories + ' kcal';
+    document.getElementById('calResult').classList.remove('hidden');
+  });
+
+  // ---------- RUNNING PACE ----------
+  document.getElementById('paceCalcBtn').addEventListener('click', ()=>{
+    const dEl = document.getElementById('paceDistance');
+    const tEl = document.getElementById('paceTime');
+    const pEl = document.getElementById('pacePace');
+    let d = parseFloat(dEl.value) || null;
+    let t = parseFloat(tEl.value) || null;
+    let p = parseFloat(pEl.value) || null;
+
+    const filled = [d,t,p].filter(v=>v!==null && v>0).length;
+    if(filled < 2){
+      alert('Fill in at least two of the three fields.');
+      return;
+    }
+
+    let resultLabel = '', resultValue = '';
+    if(d && t && !p){
+      p = t/d;
+      pEl.value = p.toFixed(2);
+      resultLabel = 'Pace';
+      resultValue = p.toFixed(2) + ' min/km';
+    } else if(d && p && !t){
+      t = d*p;
+      tEl.value = t.toFixed(1);
+      resultLabel = 'Time';
+      const mins = Math.floor(t);
+      const secs = Math.round((t-mins)*60);
+      resultValue = mins + ':' + String(secs).padStart(2,'0') + ' (' + t.toFixed(1) + ' min)';
+    } else if(t && p && !d){
+      d = t/p;
+      dEl.value = d.toFixed(2);
+      resultLabel = 'Distance';
+      resultValue = d.toFixed(2) + ' km';
+    } else {
+      // all three filled — just recompute pace from distance/time as the primary result
+      p = t/d;
+      resultLabel = 'Pace (from distance & time)';
+      resultValue = p.toFixed(2) + ' min/km';
+    }
+
+    document.getElementById('paceBig').textContent = resultValue;
+    document.getElementById('paceLbl').textContent = resultLabel;
+    document.getElementById('paceResult').classList.remove('hidden');
+
+    if(d && t){
+      const speedKmh = d / (t/60);
+      document.getElementById('paceSpeedNote').textContent = `Speed: ${speedKmh.toFixed(2)} km/h`;
+    } else {
+      document.getElementById('paceSpeedNote').textContent = '';
+    }
+  });
+
+  // ---------- HEART RATE ZONES ----------
+  document.getElementById('hrCalcBtn').addEventListener('click', ()=>{
+    const age = parseInt(document.getElementById('hrAge').value);
+    if(!age || age <= 0){ alert('Enter a valid age.'); return; }
+    const restingRaw = document.getElementById('hrResting').value;
+    const resting = restingRaw ? parseInt(restingRaw) : null;
+    const maxHR = 220 - age;
+
+    document.getElementById('hrMaxBig').textContent = maxHR + ' bpm';
+
+    const zones = [
+      {name:'Zone 1 · Recovery', desc:'Very light, easy pace', lo:0.50, hi:0.60},
+      {name:'Zone 2 · Fat Burn', desc:'Light, conversational', lo:0.60, hi:0.70},
+      {name:'Zone 3 · Aerobic', desc:'Moderate, steady cardio', lo:0.70, hi:0.80},
+      {name:'Zone 4 · Threshold', desc:'Hard, tempo effort', lo:0.80, hi:0.90},
+      {name:'Zone 5 · Max', desc:'Very hard, sprint effort', lo:0.90, hi:1.00}
+    ];
+
+    function targetHR(pct){
+      if(resting !== null){
+        return Math.round((maxHR - resting) * pct + resting);
+      }
+      return Math.round(maxHR * pct);
+    }
+
+    document.getElementById('hrZones').innerHTML = zones.map(z=>`
+      <div class="zone-row">
+        <div>
+          <div class="zname">${z.name}</div>
+          <div class="zdesc">${z.desc}</div>
+        </div>
+        <div class="zbpm">${targetHR(z.lo)}–${targetHR(z.hi)}</div>
+      </div>
+    `).join('') + `<div class="empty-note">${resting !== null ? 'Using Karvonen method (accounts for resting HR)' : 'Using simple % of max HR — enter resting HR above for a more accurate Karvonen estimate'}</div>`;
+
+    document.getElementById('hrResult').classList.remove('hidden');
+  });
+
+  // ---------- PLATE LOADER ----------
+  const PLATES = [25, 20, 15, 10, 5, 2.5, 1.25];
+
+  document.getElementById('plateCalcBtn').addEventListener('click', ()=>{
+    const target = parseFloat(document.getElementById('plateTarget').value);
+    const bar = parseFloat(document.getElementById('plateBar').value) || 0;
+    if(!target || target <= bar){
+      alert('Enter a target weight greater than the bar/sled weight.');
+      return;
+    }
+    let perSide = (target - bar) / 2;
+    document.getElementById('plateBig').textContent = perSide.toFixed(2) + ' kg';
+
+    let remaining = perSide;
+    const used = [];
+    PLATES.forEach(plate=>{
+      const count = Math.floor((remaining + 0.001) / plate);
+      if(count > 0){
+        used.push({plate, count});
+        remaining -= count * plate;
+      }
+    });
+
+    let html = '';
+    if(used.length === 0){
+      html = '<div class="empty-note">No standard plates needed for this amount.</div>';
+    } else {
+      html = used.map(u=>`
+        <div class="plate-result-row">
+          <span class="plate-chip">${u.plate}kg</span>
+          <span>× ${u.count} per side</span>
+        </div>
+      `).join('');
+      if(remaining > 0.05){
+        html += `<div class="empty-note">Plus ~${remaining.toFixed(2)}kg not achievable with standard plates.</div>`;
+      }
+    }
+    document.getElementById('plateBreakdown').innerHTML = html;
+    document.getElementById('plateResult').classList.remove('hidden');
+  });
+
+})();
+</script>
+</body>
+</html>
